@@ -1,0 +1,45 @@
+import random
+
+
+def generate_question():
+    num1 = random.randint(1, 10)
+    num2 = random.randint(1, 10)
+    operator = random.choice(['+', '-'])
+
+    if operator == '+':
+        answer = num1 + num2
+    else:
+        answer = num1 - num2
+
+    question = f"What is {num1} {operator} {num2}? "
+
+    return question, answer
+
+
+def play_math_game():
+    score = 0
+    num_questions = 5  # You can change the number of questions
+
+    print("Welcome to the Math Game for Kids!")
+    print("You will be asked to solve simple addition and subtraction problems.")
+
+    for _ in range(num_questions):
+        question, correct_answer = generate_question()
+
+        try:
+            user_answer = int(input(question))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+
+        if user_answer == correct_answer:
+            print("Correct!\n")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer is {correct_answer}.\n")
+
+    print(f"Game Over! Your score is {score}/{num_questions}.")
+
+
+if __name__ == "__main__":
+    play_math_game()
